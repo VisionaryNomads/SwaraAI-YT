@@ -2,6 +2,33 @@
 
 import argparse
 import os
+import json
+import configparser
+
+
+def load_scene_info():
+    with open("scenes.json", "r") as json_file:
+        return json.load(json_file)
+
+
+def load_render_settings():
+    config = configparser.ConfigParser()
+    config.read("settings.cfg")
+    return config["RenderSettings"]
+
+
+def parse_args_and_kwargs(args_str):
+    args_list = args_str.split()
+    args = []
+    kwargs = {}
+    for arg in args_list:
+        if "=" in arg:
+            key, value = arg.split("=")
+            kwargs[key] = value
+        else:
+            args.append(arg)
+    return args, kwargs
+
 
 parser = argparse.ArgumentParser(description="SwaraAI-YT Manim Render")
 parser.add_argument("class_name", help="Name of the class to be rendered")
@@ -21,38 +48,44 @@ parser.add_argument(
     action="store_true",
 )
 
+parser.add_argument(
+    "-a",
+    "--args",
+    help="Additional arguments to pass to Manim",
+    default="",
+)
 
 args = parser.parse_args()
 class_name = args.class_name
 resolution = args.resolution
 preview = args.preview
+additional_args_str = args.args
+
+scenes = load_scene_info()
+render_settings = load_render_settings()
+
+resolution = render_settings.get("resolution", "m")
+preview = render_settings.getboolean("preview", False)
 
 FLAGS = f"-q{resolution}"
 if preview:
     FLAGS += " -p"
 
-scenes = {
-    "EV": "Methodology/0_start.py",
-    "EV2EA": "Methodology/1_engVid_to_engAud.py",
-    "EA2ET": "Methodology/2_engAud_to_engText.py",
-    "ET2RT": "Methodology/3_engText_to_regText.py",
-    "RT2RA": "Methodology/4_regText_to_regAud.py",
-    "RA2RVCA": "Methodology/5_regAud_to_RVCAud.py",
-    "RVCA2RV": "Methodology/6_RVCAud_to_regVid.py",
-    "RV2RSV": "Methodology/7_regVid_to_regSubVid.py",
-    "RV": "Methodology/8_end.py",
-}
+additional_args, additional_kwargs = parse_args_and_kwargs(additional_args_str)
+
+manim_command = "manim {} {} "
+manim_command += f"{FLAGS} {' '.join(additional_args)}"
 
 if class_name in scenes:
     scene = scenes[class_name]
-    os.system(f"manim {scene} {class_name} {FLAGS}")
+    os.system(manim_command.format(scene, class_name))
     print(f"Rendered {class_name}")
     os.system("python3 export.py")
     print(f"Exported {class_name}")
 
 elif class_name == "all":
     for scene in scenes:
-        os.system(f"manim {scenes[scene]} {scene} {FLAGS}")
+        os.system(manim_command.format(scenes[scene], scene))
         print(f"Rendered {scene}")
     os.system("python3 export.py")
     print(f"Exported all scenes")

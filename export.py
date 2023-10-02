@@ -14,13 +14,11 @@ for quality in qualities:
     for scene in os.listdir(videos_dir):
         files_dir = os.path.join(videos_dir, scene, quality)
 
-        if not os.path.exists(files_dir):
-            continue
-
-        files = os.listdir(files_dir)
-        for file in files:
-            if file.endswith(".mp4"):
-                shutil.copyfile(
-                    os.path.join(videos_dir, scene, quality, file),
-                    os.path.join(exports_dir, f"{scene}_{file}"),
-                )
+        if os.path.exists(files_dir):
+            files = os.listdir(files_dir)
+            for file in files:
+                if file.endswith(".mp4"):
+                    shutil.copyfile(
+                        os.path.join(videos_dir, scene, quality, file),
+                        os.path.join(exports_dir, f"{scene}_{file}"),
+                    )
