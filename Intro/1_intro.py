@@ -105,8 +105,14 @@ class Intro(MyScene):
             LaggedStartMap(FadeIn, description, lag_ratio=0.2),
             LaggedStartMap(FadeIn, ps, lag_ratio=0.2),
             LaggedStartMap(FadeIn, team, lag_ratio=0.2),
-            # LaggedStartMap(FadeIn, dubbing, lag_ratio=0.2),
             *[LaggedStartMap(FadeIn, obj, lag_ratio=0.2) for obj in dubbing],
         )
 
-        self.wait(0.5)
+        self.wait(2)
+
+        self.play(
+            LaggedStartMap(FadeOut, description, lag_ratio=0.2),
+            LaggedStartMap(FadeOut, ps, lag_ratio=0.2),
+            LaggedStartMap(FadeOut, team, lag_ratio=0.2),
+            *[LaggedStartMap(FadeOut, obj, lag_ratio=0.2) for obj in dubbing],
+        )

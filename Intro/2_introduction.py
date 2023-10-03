@@ -16,9 +16,13 @@ class Introduction(MyScene):
     def construct(self):
         file_path = os.path.realpath(__file__)
         parent_dir = os.path.dirname(file_path)
-        image_files = os.listdir(os.path.join(parent_dir, "..", "assets", "images"))
+        image_files = os.listdir(
+            os.path.join(parent_dir, "..", "assets", "images", "intro")
+        )
 
-        images = [ImageMobject(f"images/{image_file}") for image_file in image_files]
+        images = [
+            ImageMobject(f"images/intro/{image_file}") for image_file in image_files
+        ]
 
         loop = 2
         image_width = 4
@@ -32,7 +36,9 @@ class Introduction(MyScene):
                 image_group.add(image)
                 current_height -= image.height + 0.5
 
-        image_group.shift(UP * 12)
+        image_group_height = images[0].height * loop * 2 + 0.5 * (loop - 1) * 2
+
+        image_group.shift(UP * image_group_height)
 
         gap = DOWN * 1.5
 
@@ -70,27 +76,41 @@ class Introduction(MyScene):
                 .align_to(intro, LEFT)
             )
             desc.add(line)
-            down_shift -= 1
+            down_shift -= line.height + 0.2
 
         self.add(title)
 
         self.play(
             LaggedStartMap(FadeIn, intro, lag_ratio=0.2, run_time=1),
             LaggedStartMap(FadeIn, desc, lag_ratio=0.2, run_time=2),
-            # LaggedStartMap(FadeIn, image_group, lag_ratio=0.2, run_time=2),
+            LaggedStartMap(FadeIn, image_group, lag_ratio=0.2, run_time=2),
+            Transform(
+                image_group,
+                image_group.copy().shift((UP * image_group_height + UP * 2) * 0.05),
+                run_time=2,
+                rate_func=linear,
+            ),
         )
-
-        image_group_copy = image_group.copy().shift(UP * 12)
 
         self.play(
-            LaggedStartMap(FadeIn, image_group, lag_ratio=0.2, run_time=2),
-            Transform(image_group, image_group_copy, run_time=40, rate_func=linear),
+            Transform(
+                image_group,
+                image_group.copy().shift((UP * image_group_height + UP * 2) * 0.9),
+                run_time=36,
+                rate_func=linear,
+            ),
         )
 
-        # self.play(
-        #     *[Transform(image, image.copy().shift(UP * 12)) for image in images],
-        #     run_time=40,
-        #     rate_func=linear,
-        # )
+        self.play(
+            Transform(
+                image_group,
+                image_group.copy().shift((UP * image_group_height + UP * 2) * 0.1),
+                run_time=4,
+                rate_func=linear,
+            ),
+            LaggedStartMap(FadeOut, intro, lag_ratio=0.2, run_time=1),
+            LaggedStartMap(FadeOut, desc, lag_ratio=0.2, run_time=2),
+            LaggedStartMap(FadeOut, image_group, lag_ratio=0.2, run_time=2),
+        )
 
-        self.wait(1)
+        self.wait(0.5)

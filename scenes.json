@@ -9,5 +9,7 @@
     "RV2RSV": "Methodology/7_regVid_to_regSubVid.py",
     "RV": "Methodology/8_end.py",
     "Intro": "Intro/1_intro.py",
-    "Introduction": "Intro/2_introduction.py"
+    "Introduction": "Intro/2_introduction.py",
+    "Problem": "Intro/3_problem.py",
+    "Solution": "Intro/4_solution.py"
 }
