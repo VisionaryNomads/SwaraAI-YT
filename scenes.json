@@ -7,5 +7,7 @@
     "RA2RVCA": "Methodology/5_regAud_to_RVCAud.py",
     "RVCA2RV": "Methodology/6_RVCAud_to_regVid.py",
     "RV2RSV": "Methodology/7_regVid_to_regSubVid.py",
-    "RV": "Methodology/8_end.py"
+    "RV": "Methodology/8_end.py",
+    "Intro": "Intro/1_intro.py",
+    "Introduction": "Intro/2_introduction.py"
 }

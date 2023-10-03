@@ -31,13 +31,16 @@ def parse_args_and_kwargs(args_str):
 
 
 parser = argparse.ArgumentParser(description="SwaraAI-YT Manim Render")
-parser.add_argument("class_name", help="Name of the class to be rendered")
+parser.add_argument(
+    "class_name",
+    help="Name of the class to be rendered. Use 'all' to render all scenes.",
+)
 
 parser.add_argument(
     "-r",
     "--resolution",
     help="Resolution of the video to be rendered",
-    default="m",
+    default="",
     choices=["l", "m", "h", "p", "k"],
 )
 
@@ -64,7 +67,8 @@ additional_args_str = args.args
 scenes = load_scene_info()
 render_settings = load_render_settings()
 
-resolution = render_settings.get("resolution", "m")
+if resolution == "":
+    resolution = render_settings.get("resolution", "m")
 preview = render_settings.getboolean("preview", False)
 
 FLAGS = f"-q{resolution}"

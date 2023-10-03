@@ -22,5 +22,4 @@ class RV(RenderNetwork):
         video_label.next_to(_video_frame, DOWN * 2)
 
         self.add(video_group_copy)
-        self.wait(1)
         self.play(Transform(video_group_copy, video_group))
