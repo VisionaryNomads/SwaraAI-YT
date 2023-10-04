@@ -1,12 +1,6 @@
 from manim import *
-import os
 
-from _video import video_frame
-from _audio import audio_frame
-
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
-from NeuralNetwork import RenderNetwork
+from _imports import RenderNetwork, audio_wave
 
 
 class EA2ET(RenderNetwork):
@@ -14,7 +8,7 @@ class EA2ET(RenderNetwork):
         return "Google Speech-to-Text"
 
     def nn_input(self):
-        audio = audio_frame(0, 4)
+        audio = audio_wave(0, 4)
 
         label = Text("English Audio")
         label.next_to(audio, DOWN).scale(0.5)

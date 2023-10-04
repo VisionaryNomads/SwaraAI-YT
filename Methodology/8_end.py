@@ -1,11 +1,6 @@
 from manim import *
-import os
 
-from _video import video_frame
-
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
-from NeuralNetwork import RenderNetwork
+from _imports import RenderNetwork, video_frame
 
 
 class RV(RenderNetwork):

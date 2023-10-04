@@ -11,14 +11,14 @@ class NetworkScene(Scene):
 
     weights_text = Text("Loading weights...").scale(0.5)
     inference_text = Text("Inference...").scale(0.5)
+    prediction_text = Text("Predicting...").scale(0.5)
     model_text = None
-
-    whole_network = None
 
     def setup(self):
         self.add_network()
         self.weights_text.move_to(self.network_mob.get_top() + UP * 0.5)
         self.inference_text.move_to(self.weights_text.get_center())
+        self.prediction_text.move_to(self.weights_text.get_center())
 
     def set_model_name(self, name):
         self.model_text = Text(name).scale(0.7)
@@ -30,7 +30,6 @@ class NetworkScene(Scene):
         self.play(Write(self.network_mob.edge_groups))
 
     def inference(self):
-        self.play(ReplacementTransform(self.weights_text, self.inference_text))
         self.feed_forward(np.random.random(self.layer_sizes[0]))
 
     def add_network(self):

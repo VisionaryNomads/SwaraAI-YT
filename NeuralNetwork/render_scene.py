@@ -82,6 +82,18 @@ class RenderNetwork(NetworkScene):
     def construct(self):
         self.setup()
 
+        nn_input_copy = self._nn_input().copy()
+        nn_input_copy.move_to(self._nn_left + RIGHT * self._nn_input().get_width() / 2)
+        nn_input_copy.set_height(self._io_small_height)
+        nn_input_copy.set_opacity(0)
+
+        nn_output_copy = self._nn_output().copy()
+        nn_output_copy.move_to(
+            self._nn_right + LEFT * self._nn_output().get_width() / 2
+        )
+        nn_output_copy.set_height(self._io_small_height)
+        nn_output_copy.set_opacity(0)
+
         if self.add_nn_input():
             if self.fade_start():
                 self.play(FadeIn(self._nn_input()))
@@ -91,44 +103,44 @@ class RenderNetwork(NetworkScene):
 
         self.load_network()
 
-        nn_input_copy = self._nn_input().copy()
-        nn_input_copy.move_to(self._nn_left + RIGHT * self._nn_input().get_width() / 2)
-        nn_input_copy.set_height(self._io_small_height)
-        nn_input_copy.set_opacity(0)
+        self.play(
+            TransformFromCopy(self._nn_input(), nn_input_copy),
+            ReplacementTransform(self.weights_text, self.inference_text),
+        )
 
-        self.play(TransformFromCopy(self._nn_input(), nn_input_copy))
         self.inference()
 
-        nn_output_copy = self._nn_output().copy()
-        nn_output_copy.move_to(
-            self._nn_right + LEFT * self._nn_output().get_width() / 2
+        self.play(
+            ReplacementTransform(nn_output_copy, self._nn_output()),
+            ReplacementTransform(self.inference_text, self.prediction_text),
         )
-        nn_output_copy.set_height(self._io_small_height)
-        nn_output_copy.set_opacity(0)
 
-        self.play(Transform(nn_output_copy, self._nn_output()))
         self.wait(2)
+
+        slide_anim = (
+            Transform(
+                self._nn_output(),
+                self._nn_output()
+                .copy()
+                .move_to(
+                    self.network_mob.get_left()
+                    + LEFT * self._nn_output().get_width() * 0.5
+                    + LEFT
+                ),
+                run_time=1.8,
+            )
+            if self.slide_output()
+            else FadeOut(Text(""))
+        )
+
+        fade_anim = FadeOut(self.nn_output()) if self.fade_end() else FadeOut(Text(""))
 
         self.play(
             FadeOut(self._nn_input()),
             FadeOut(self.network_mob),
-            FadeOut(self.inference_text),
+            FadeOut(self.prediction_text),
             FadeOut(self.model_text),
+            FadeOut(nn_input_copy),
+            slide_anim,
+            fade_anim,
         )
-
-        if self.slide_output():
-            self.play(
-                Transform(
-                    nn_output_copy,
-                    self._nn_output()
-                    .copy()
-                    .move_to(
-                        self.network_mob.get_left()
-                        + LEFT * self._nn_output().get_width() * 0.5
-                        + LEFT
-                    ),
-                )
-            )
-
-        elif self.fade_end():
-            self.play(FadeOut(nn_input_copy), FadeOut(nn_output_copy))

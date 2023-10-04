@@ -1,4 +1,5 @@
 {
+    "Test": "Test/test.py",
     "EV": "Methodology/0_start.py",
     "EV2EA": "Methodology/1_engVid_to_engAud.py",
     "EA2ET": "Methodology/2_engAud_to_engText.py",

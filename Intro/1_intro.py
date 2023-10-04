@@ -1,7 +1,7 @@
 from manim import *
-from _video import video_frame
 
 from _base import MyScene
+from _imports import video_frame
 
 
 class Intro(MyScene):
@@ -32,7 +32,6 @@ class Intro(MyScene):
         eng_video = video_frame()
         hin_video = video_frame(add_subtitle=True)
 
-        # Small text below the video
         eng_text = Tex(
             "\\tiny{\\textbf{English Video}}",
             color=WHITE,
@@ -51,7 +50,6 @@ class Intro(MyScene):
         eng_vid_text.to_corner(UR, buff=1)
         hin_vid_text.to_corner(DR, buff=1)
 
-        # Make a arrow from eng_video to hin_video
         arrow = Arrow(
             eng_vid_text.get_bottom(),
             hin_vid_text.get_top(),
@@ -59,25 +57,13 @@ class Intro(MyScene):
             buff=0.2,
         )
 
-        # Make a text "Dubbing" and align it to the arrow
         dubbing_text = Text("Dubbing", color=GRAY_B, font_size=15)
-
-        # Align the text to the arrow
-        # Rotate the text by 90 degrees
         dubbing_text.rotate(90 * DEGREES)
-
         dubbing_text.next_to(arrow, LEFT, buff=0.2)
-
-        # Create a VGroup of the two videos
-        videos = VGroup(eng_vid_text, hin_vid_text)
-
-        # Create a VGroup of the arrow and the text
         arrow_text = VGroup(arrow, dubbing_text)
+        dubbing_group = VGroup(eng_vid_text, arrow_text, hin_vid_text)
 
-        # Create a VGroup of the videos and the arrow_text
-        dubbing = VGroup(videos, arrow_text)
-
-        return dubbing
+        return dubbing_group
 
     def construct(self):
         title = self.get_title()
@@ -105,7 +91,7 @@ class Intro(MyScene):
             LaggedStartMap(FadeIn, description, lag_ratio=0.2),
             LaggedStartMap(FadeIn, ps, lag_ratio=0.2),
             LaggedStartMap(FadeIn, team, lag_ratio=0.2),
-            *[LaggedStartMap(FadeIn, obj, lag_ratio=0.2) for obj in dubbing],
+            Write(dubbing, run_time=2),
         )
 
         self.wait(2)

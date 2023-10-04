@@ -1,11 +1,6 @@
 from manim import *
-import os
 
-from _audio import audio_frame
-
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
-from NeuralNetwork import RenderNetwork
+from _imports import RenderNetwork, audio_wave
 
 
 class RT2RA(RenderNetwork):
@@ -31,7 +26,7 @@ class RT2RA(RenderNetwork):
         return VGroup(border, text, label)
 
     def nn_output(self):
-        audio = audio_frame(4, 8)
+        audio = audio_wave(4, 8)
 
         label = Text("Regional Audio")
         label.next_to(audio, DOWN).scale(0.5)

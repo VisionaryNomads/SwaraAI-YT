@@ -1,9 +1,6 @@
 from manim import *
-import os
 
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
-from NeuralNetwork import RenderNetwork
+from _imports import RenderNetwork
 
 
 class ET2RT(RenderNetwork):

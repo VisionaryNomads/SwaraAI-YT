@@ -1,5 +1,4 @@
 from manim import *
-import os
 
 from _base import MyScene
 

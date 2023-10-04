@@ -1,12 +1,6 @@
 from manim import *
-import os
 
-from _video import video_frame
-from _audio import audio_frame
-
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
-from NeuralNetwork import RenderNetwork
+from _imports import RenderNetwork, video_frame, audio_wave
 
 
 class EV2EA(RenderNetwork):
@@ -22,7 +16,7 @@ class EV2EA(RenderNetwork):
         return VGroup(video, video_label)
 
     def nn_output(self):
-        audio = audio_frame(0, 4)
+        audio = audio_wave(0, 4)
 
         label = Text("English Audio")
         label.next_to(audio, DOWN).scale(0.5)
