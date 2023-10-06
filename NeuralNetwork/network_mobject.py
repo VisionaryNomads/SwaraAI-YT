@@ -3,18 +3,19 @@ import numpy as np
 import copy
 
 from .network import Network
+from ._imports import MyColors
 
 
 class NetworkMobject(VGroup):
     neuron_radius = 0.15
     neuron_to_neuron_buff = MED_SMALL_BUFF
     layer_to_layer_buff = LARGE_BUFF
-    neuron_stroke_color = YELLOW
+    neuron_stroke_color = MyColors.neuron_stroke_color
     neuron_stroke_width = 3
-    neuron_fill_color = YELLOW
+    neuron_fill_color = MyColors.neuron_fill_color
     edge_color = GREY_D
     edge_stroke_width = 2
-    edge_propogation_color = YELLOW
+    edge_propogation_color = MyColors.edge_propogation_color
     edge_propogation_time = 1
     max_shown_neurons = 16
     brace_for_large_layers = True
@@ -141,7 +142,7 @@ class NetworkMobject(VGroup):
     def get_edge_propogation_animations(self, index):
         edge_group_copy = self.edge_groups[index].copy()
         edge_group_copy.set_stroke(
-            self.edge_propogation_color, width=1.5 * self.edge_stroke_width
+            self.edge_propogation_color, width=1.25 * self.edge_stroke_width
         )
 
         return [

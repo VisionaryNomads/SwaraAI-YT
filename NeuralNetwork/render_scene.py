@@ -1,5 +1,4 @@
 from manim import *
-import numpy as np
 
 from .network_scene import NetworkScene
 

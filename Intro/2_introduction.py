@@ -5,7 +5,6 @@ from _base import MyScene
 
 
 class Introduction(MyScene):
-    _title = "SwaraAI"
     _intro = "Introduction"
 
     _desc = [
@@ -42,7 +41,7 @@ class Introduction(MyScene):
 
         gap = DOWN * 1.5
 
-        title = self.latex(self._title, 80, color=YELLOW).to_corner(UL, buff=1)
+        title = self.get_title()
         intro = (
             self.latex(
                 self._intro,
@@ -64,10 +63,10 @@ class Introduction(MyScene):
                     color=WHITE,
                     tex_environment="flushleft",
                     tex_to_color_map={
-                        "promotional": RED,
-                        "awareness": RED,
-                        "intellectual property": RED,
-                        "outreach of such videos for public awareness": RED,
+                        "promotional": self.highlight_color,
+                        "awareness": self.highlight_color,
+                        "intellectual property": self.highlight_color,
+                        "outreach of such videos for public awareness": self.highlight_color,
                     },
                 )
                 .set(width=8)
@@ -83,6 +82,9 @@ class Introduction(MyScene):
         self.play(
             LaggedStartMap(FadeIn, intro, lag_ratio=0.2, run_time=1),
             LaggedStartMap(FadeIn, desc, lag_ratio=0.2, run_time=2),
+        )
+
+        self.play(
             LaggedStartMap(FadeIn, image_group, lag_ratio=0.2, run_time=2),
             Transform(
                 image_group,

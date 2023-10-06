@@ -1,57 +1,10 @@
 from manim import *
 
-from _base import MyScene
 from _imports import video_frame
 
 
-class Solution(MyScene):
-    _intro = "Solution"
-
-    _desc = [
-        "SwaraAI provides a solution to this problem. It allows users to quickly and easily dub videos into other Indian regional languages.",
-        "The software produces a voiceover in a human-like voice, as well as text supers that are dubbed from English to other Indian regional languages.",
-        "The translated voiceover is also in simple language, easy to understand, and not colloquial in nature.",
-    ]
-
+class Tester(Scene):
     def construct(self):
-        gap = DOWN * 1.5
-
-        title = self.get_title()
-        intro = (
-            self.latex(
-                self._intro,
-                10,
-                color=WHITE,
-                tex_environment="flushleft",
-            )
-            .next_to(title, gap, buff=0.5)
-            .align_to(title, LEFT)
-        )
-
-        down_shift = 0
-        desc = VGroup()
-        for line in self._desc:
-            line = (
-                self.latex(
-                    line,
-                    15,
-                    color=WHITE,
-                    tex_environment="flushleft",
-                    tex_to_color_map={
-                        "quickly and easily dub videos": self.highlight_color,
-                        "human-like voice": self.highlight_color,
-                        "text supers": self.highlight_color,
-                        "simple language, easy to understand, and not colloquial in nature": self.highlight_color,
-                    },
-                )
-                .set(width=8)
-                .next_to(intro, gap, buff=0.5)
-                .shift(down_shift)
-                .align_to(intro, LEFT)
-            )
-            desc.add(line)
-            down_shift -= line.height + 0.2
-
         eng_video = video_frame()
         hin_video = video_frame(add_subtitle=True)
 
@@ -135,35 +88,38 @@ class Solution(MyScene):
             "हिंदी वीडियो (Hindi)",
         ]
 
-        self.add(title)
-        self.play(
-            LaggedStartMap(FadeIn, intro, lag_ratio=0.2, run_time=1),
-            LaggedStartMap(FadeIn, desc, lag_ratio=0.2, run_time=2),
-            Create(eng_rect),
-            Write(upload_btn),
-        )
+        self.play(Create(eng_rect), Write(upload_btn))
         self.wait(0.5)
-        # Circumscribe
-        self.play(Flash(upload_btn, color=WHITE, line_length=0.2, flash_radius=0.5))
+
+        self.play(
+            Flash(upload_btn, color=WHITE, line_length=0.2, flash_radius=0.5),
+        )
+
         self.wait(0.5)
         self.play(
             FadeOut(upload_btn, run_time=0.25),
             Write(small_eng_vid_text),
             Write(select_lang),
         )
+
         self.wait(0.5)
         self.play(Flash(select_lang, color=WHITE, flash_radius=0.6))
         self.wait(0.5)
+
         self.play(
-            FadeOut(select_lang, shift=UP * 0.25), FadeIn(select_voice, shift=UP * 0.25)
+            FadeOut(select_lang, shift=UP * 0.25),
+            FadeIn(select_voice, shift=UP * 0.25),
         )
+
         self.wait(0.5)
         self.play(Flash(select_voice, color=WHITE, flash_radius=0.6))
         self.wait(0.5)
+
         self.play(
             FadeOut(select_voice, run_time=0.5),
             Transform(small_eng_vid_text, eng_vid_text),
         )
+
         self.play(Write(arrow_text))
         self.play(Write(hin_vid_text), Create(hin_rect))
 
@@ -178,14 +134,3 @@ class Solution(MyScene):
             self.wait(0.5)
 
         self.wait(1)
-
-        dubbing = VGroup(
-            small_eng_vid_text, eng_rect, arrow_text, hin_vid_text, prev, hin_rect
-        )
-
-        self.play(
-            LaggedStartMap(FadeOut, intro, lag_ratio=0.2, run_time=1),
-            LaggedStartMap(FadeOut, desc, lag_ratio=0.2, run_time=2),
-            LaggedStartMap(FadeOut, dubbing, lag_ratio=0.2, run_time=1),
-        )
-        self.wait(0.5)

@@ -1,7 +1,7 @@
 from manim import *
 
 from _base import MyScene
-from _imports import video_frame
+from _imports import video_frame, logo_bg, logo_text, logo
 
 
 class Intro(MyScene):
@@ -10,15 +10,28 @@ class Intro(MyScene):
     _ps = "SIH 1386"
     _team = "Visionary Nomads"
 
-    def get_title(self):
-        return self.latex(self._title, 80, color=YELLOW)
+    def add_title(self):
+        _logo_bg = logo_bg(1).scale(1.2)
+        _logo_text = logo_text()
+
+        self.play(Write(_logo_bg, run_time=2))
+        self.wait(0.5)
+        self.play(
+            Transform(_logo_bg, logo_bg(0.75), run_time=3),
+            Write(_logo_text, run_time=4),
+        )
+        self.wait(1)
+        logo = VGroup(_logo_bg, _logo_text)
+
+        self.play(Transform(logo, self.get_title()), run_time=1.5)
+        return logo
 
     def get_description(self):
         return self.latex(
             self._description,
             20,
             color=WHITE,
-            tex_to_color_map={"dubbing of videos": RED},
+            tex_to_color_map={"dubbing of videos": self.highlight_color},
             tex_environment="flushleft",
         ).set(width=8)
 
@@ -66,35 +79,37 @@ class Intro(MyScene):
         return dubbing_group
 
     def construct(self):
-        title = self.get_title()
         description = self.get_description()
         ps = self.get_ps()
         team = self.get_team()
 
         dubbing = self.get_dub_animation()
+        _e, _t, _h = dubbing
 
-        self.play(Write(title))
+        title = self.add_title()
         self.wait(1)
 
         gap = DOWN * 1.5
 
-        title_copy = title.copy().to_corner(UL, buff=1)
-        description.next_to(title_copy, gap, buff=0.5).align_to(title_copy, LEFT)
+        description.next_to(title, gap, buff=0.5).align_to(title, LEFT)
         ps.next_to(description, gap, buff=0.5).align_to(description, LEFT)
         team.next_to(ps, gap, buff=0.5).align_to(ps, LEFT)
-
-        self.play(Transform(title, title_copy))
-
-        self.wait(0.3)
 
         self.play(
             LaggedStartMap(FadeIn, description, lag_ratio=0.2),
             LaggedStartMap(FadeIn, ps, lag_ratio=0.2),
             LaggedStartMap(FadeIn, team, lag_ratio=0.2),
-            Write(dubbing, run_time=2),
         )
 
-        self.wait(2)
+        self.wait(0.5)
+
+        self.play(Write(_e, run_time=1.5))
+        self.wait(0.5)
+        self.play(Write(_t, run_time=1.5))
+        self.wait(0.5)
+        self.play(Write(_h, run_time=1.5))
+
+        self.wait(4)
 
         self.play(
             LaggedStartMap(FadeOut, description, lag_ratio=0.2),

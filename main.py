@@ -80,19 +80,42 @@ additional_args, additional_kwargs = parse_args_and_kwargs(additional_args_str)
 manim_command = "manim {} {} "
 manim_command += f"{FLAGS} {' '.join(additional_args)}"
 
+success_render = []
+error_render = []
+
 if class_name in scenes:
     scene = scenes[class_name]
-    os.system(manim_command.format(scene, class_name))
-    print(f"Rendered {class_name}")
-    os.system("python3 export.py")
-    print(f"Exported {class_name}")
+    exit_code = os.system(manim_command.format(scene, class_name))
+    if exit_code == 0:
+        print(f"Rendered {class_name}")
+        os.system("python3 export.py")
+        print(f"Exported {class_name}")
+    else:
+        print(f"Error rendering {class_name}")
 
 elif class_name == "all":
     for scene in scenes:
-        os.system(manim_command.format(scenes[scene], scene))
-        print(f"Rendered {scene}")
+        if scene == "Test":
+            continue
+        exit_code = os.system(manim_command.format(scenes[scene], scene))
+        if exit_code == 0:
+            success_render.append(scene)
+            print(f"Rendered {scene}")
+        else:
+            error_render.append(scene)
+            print(f"Error rendering {scene}")
+
     os.system("python3 export.py")
-    print(f"Exported all scenes")
+
+    if len(success_render) > 0:
+        print("Rendered scenes:")
+        for scene in success_render:
+            print(scene)
+
+    if len(error_render) > 0:
+        print("Error rendering scenes:")
+        for scene in error_render:
+            print(scene)
 
 else:
     print(f"Scene {class_name} not found")

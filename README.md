@@ -1,4 +1,6 @@
-# SwaraAI - YouTube Video
+# SwaraAI - From English to Everyone
+
+## YouTube Video
 
 Created using [manim](https://www.manim.community/).
 

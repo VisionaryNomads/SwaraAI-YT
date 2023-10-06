@@ -4,7 +4,6 @@ from _base import MyScene
 
 
 class Problem(MyScene):
-    _title = "SwaraAI"
     _intro = "Problem"
 
     _desc = [
@@ -15,7 +14,7 @@ class Problem(MyScene):
     def construct(self):
         gap = DOWN * 1.5
 
-        title = self.latex(self._title, 80, color=YELLOW).to_corner(UL, buff=1)
+        title = self.get_title()
         intro = (
             self.latex(
                 self._intro,
@@ -37,9 +36,9 @@ class Problem(MyScene):
                     color=WHITE,
                     tex_environment="flushleft",
                     tex_to_color_map={
-                        "22 official languages": RED,
-                        "challenge": RED,
-                        "communicating with a wide audience": RED,
+                        "22 official languages": self.highlight_color,
+                        "challenge": self.highlight_color,
+                        "communicating with a wide audience": self.highlight_color,
                     },
                 )
                 .set(width=7)
@@ -63,6 +62,9 @@ class Problem(MyScene):
         self.play(
             LaggedStartMap(FadeIn, intro, lag_ratio=0.2, run_time=1),
             LaggedStartMap(FadeIn, desc, lag_ratio=0.2, run_time=2),
+        )
+
+        self.play(
             LaggedStartMap(
                 DrawBorderThenFill,
                 langs,
@@ -70,10 +72,9 @@ class Problem(MyScene):
                 run_time=4,
             ),
         )
-
         self.play(FadeIn(langp))
 
-        self.wait(2)
+        self.wait(4)
 
         self.play(
             LaggedStartMap(FadeOut, intro, lag_ratio=0.2, run_time=1),
