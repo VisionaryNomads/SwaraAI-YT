@@ -1,6 +1,14 @@
 from manim import *
 
 
+class WriteLogoAnimation(Animation):
+    def __init__(self, mobject, **kwargs):
+        super().__init__(mobject, **kwargs)
+
+    def interpolate_mobject(self, alpha):
+        alpha = self.rate_func(alpha)
+
+
 class Tester(Scene):
     def construct(self):
         bg = SVGMobject("logo/bg.svg")
@@ -34,7 +42,7 @@ class Tester(Scene):
 
         bg.scale(1.2)
 
-        self.play(Write(bg, run_time=2))
+        self.play(WriteLogoAnimation(bg, run_time=2))
 
         self.wait(0.5)
 

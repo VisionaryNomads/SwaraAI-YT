@@ -117,20 +117,20 @@ class Solution(MyScene):
             "मराठी वीडियो (Marathi)",
             "ગુજરાતી વિડિઓ (Gujarati)",
             "తెలుగు వీడియో (Telugu)",
-            "ਪੰਜਾਬੀ ਵੀਡੀਓ (Punjabi)",
-            "বাংলা ভিডিও (Bengali)",
-            "ଓଡ଼ିଆ ଭିଡ଼ିଓ (Odia)",
-            "ಕನ್ನಡ ವೀಡಿಯೊ (Kannada)",
-            "தமிழ் வீடியோ (Tamil)",
-            "മലയാളം വീഡിയോ (Malayalam)",
-            "मैथिली वीडियो (Maithili)",
-            "मणिपुरी वीडियो (Manipuri)",
-            "कोंकणी व्हिडिओ (Konkani)",
-            "বোডো ভিডিও (Bodo)",
-            "डोगरी वीडियो (Dogri)",
-            "असमिया भिडिओ (Assamese)",
-            "ਸੰਥਾਲੀ ਵੀਡੀਓ (Santali)",
-            "संस्कृत वीडियो (Sanskrit)",
+            # "ਪੰਜਾਬੀ ਵੀਡੀਓ (Punjabi)",
+            # "বাংলা ভিডিও (Bengali)",
+            # "ଓଡ଼ିଆ ଭିଡ଼ିଓ (Odia)",
+            # "ಕನ್ನಡ ವೀಡಿಯೊ (Kannada)",
+            # "தமிழ் வீடியோ (Tamil)",
+            # "മലയാളം വീഡിയോ (Malayalam)",
+            # "मैथिली वीडियो (Maithili)",
+            # "मणिपुरी वीडियो (Manipuri)",
+            # "कोंकणी व्हिडिओ (Konkani)",
+            # "বোডো ভিডিও (Bodo)",
+            # "डोगरी वीडियो (Dogri)",
+            # "असमिया भिडिओ (Assamese)",
+            # "ਸੰਥਾਲੀ ਵੀਡੀਓ (Santali)",
+            # "संस्कृत वीडियो (Sanskrit)",
             "नेपाली भिडिओ (Nepali)",
             "हिंदी वीडियो (Hindi)",
         ]
@@ -144,7 +144,8 @@ class Solution(MyScene):
         )
         self.wait(0.5)
         # Circumscribe
-        self.play(Flash(upload_btn, color=WHITE, line_length=0.2, flash_radius=0.5))
+        self.play(Circumscribe(upload_btn, color=YELLOW, run_time=1.5, buff=0.2))
+        # self.play(Flash(upload_btn, color=WHITE, line_length=0.2, flash_radius=0.5))
         self.wait(0.5)
         self.play(
             FadeOut(upload_btn, run_time=0.25),
@@ -152,13 +153,15 @@ class Solution(MyScene):
             Write(select_lang),
         )
         self.wait(0.5)
-        self.play(Flash(select_lang, color=WHITE, flash_radius=0.6))
+        self.play(Circumscribe(select_lang, color=YELLOW, run_time=1.5, buff=0.2))
+        # self.play(Flash(select_lang, color=WHITE, flash_radius=0.6))
         self.wait(0.5)
         self.play(
             FadeOut(select_lang, shift=UP * 0.25), FadeIn(select_voice, shift=UP * 0.25)
         )
         self.wait(0.5)
-        self.play(Flash(select_voice, color=WHITE, flash_radius=0.6))
+        self.play(Circumscribe(select_voice, color=YELLOW, run_time=1.5, buff=0.2))
+        # self.play(Flash(select_voice, color=WHITE, flash_radius=0.6))
         self.wait(0.5)
         self.play(
             FadeOut(select_voice, run_time=0.5),
@@ -186,6 +189,9 @@ class Solution(MyScene):
         self.play(
             LaggedStartMap(FadeOut, intro, lag_ratio=0.2, run_time=1),
             LaggedStartMap(FadeOut, desc, lag_ratio=0.2, run_time=2),
-            LaggedStartMap(FadeOut, dubbing, lag_ratio=0.2, run_time=1),
+            # LaggedStartMap(FadeOut, dubbing, lag_ratio=0.2, run_time=1),
+            Unwrite(small_eng_vid_text, run_time=1.5),
+            Unwrite(eng_rect, run_time=1.5),
+            Unwrite(arrow_text, run_time=1.5),
         )
         self.wait(0.5)

@@ -1,7 +1,7 @@
 from manim import *
 
 
-def video_frame(add_subtitle=False):
+def video_frame(add_subtitle=False, corner_radius=0.2):
     video_frame = RoundedRectangle(
         width=8.0,
         height=4.5,
@@ -9,7 +9,7 @@ def video_frame(add_subtitle=False):
         stroke_width=2,
         fill_opacity=1.0,
         fill_color=BLACK,
-        corner_radius=0.2,
+        corner_radius=corner_radius,
     )
 
     status_bar = Rectangle(

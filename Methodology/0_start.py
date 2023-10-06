@@ -16,6 +16,7 @@ class EV(RenderNetwork):
         _video_frame.scale(3)
         video_label.next_to(_video_frame, DOWN * 1.5)
 
-        self.play(FadeIn(video_group))
+        self.add(_video_frame)
+        self.play(Write(video_label))
         self.wait(1)
         self.play(Transform(video_group, video_group_copy))
