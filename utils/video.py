@@ -1,5 +1,7 @@
 from manim import *
 
+from .colors import MyColors
+
 
 def video_frame(add_subtitle=False, corner_radius=0.2):
     video_frame = RoundedRectangle(
@@ -27,12 +29,12 @@ def video_frame(add_subtitle=False, corner_radius=0.2):
     red_bar = Rectangle(
         width=1.5,
         height=0.01,
-        color=RED_E,
+        color=MyColors.youtube_red,
         fill_opacity=0.7,
     )
     red_bar.move_to(status_bar.get_left() - LEFT * red_bar.width * 0.5)
 
-    red_dot = Dot(color=RED_E)
+    red_dot = Dot(color=MyColors.youtube_red)
     red_dot.move_to(red_bar.get_right() + RIGHT * red_dot.width * 0.5)
 
     bar = VGroup(status_bar, time_label_left, time_label_right, red_bar, red_dot)
@@ -60,7 +62,7 @@ def video_frame(add_subtitle=False, corner_radius=0.2):
     play_button = RegularPolygon(
         n=3,
         fill_opacity=1.0,
-        color=RED_E,
+        color=MyColors.youtube_red,
     )
     play_button.set(height=0.5)
     play_button.rotate(-TAU / 4)

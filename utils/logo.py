@@ -36,7 +36,7 @@ def logo_text(opacity=1):
     return text
 
 
-def logo_text(opacity=1, stroke_width=2):
+def logo_text(stroke_width=2):
     text = SVGMobject(
         "logo/text.svg",
         fill_color=MyColors.logo_text,
@@ -45,7 +45,6 @@ def logo_text(opacity=1, stroke_width=2):
         stroke_width=stroke_width,
     )
     text.width = _height * 1.5
-    text.set_opacity(opacity)
     return text
 
 
@@ -54,5 +53,4 @@ def logo(bg_opacity=_bg_opacity):
     _logo_text = logo_text()
 
     logo = VGroup(_logo_bg, _logo_text)
-
     return logo

@@ -71,4 +71,4 @@ class Method(MyScene):
             FadeOut(lets_upload),
             Transform(i_eng_video, f_eng_video, run_time=2),
         )
-        self.wait(0.5)
+        self.wait(0.25)

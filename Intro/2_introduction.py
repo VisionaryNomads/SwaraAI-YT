@@ -114,5 +114,3 @@ class Introduction(MyScene):
             LaggedStartMap(FadeOut, desc, lag_ratio=0.2, run_time=2),
             LaggedStartMap(FadeOut, image_group, lag_ratio=0.2, run_time=2),
         )
-
-        self.wait(0.5)

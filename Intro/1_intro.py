@@ -12,7 +12,7 @@ class Intro(MyScene):
 
     def add_title(self):
         _logo_bg = logo_bg(1).scale(1.2)
-        _logo_text = logo_text()
+        _logo_text = logo_text(2)
 
         self.play(Write(_logo_bg, run_time=2))
         self.wait(0.5)

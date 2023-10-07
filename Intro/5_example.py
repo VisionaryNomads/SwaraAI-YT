@@ -152,5 +152,4 @@ class Example(MyScene):
         )
 
         self.play(FadeIn(whole_screen_black, run_time=2))
-
-        self.wait(0.5)
+        self.wait(0.25)

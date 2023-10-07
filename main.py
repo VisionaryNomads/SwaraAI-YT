@@ -52,6 +52,13 @@ parser.add_argument(
 )
 
 parser.add_argument(
+    "-f",
+    "--folder",
+    help="Folder name from which to render",
+    default="",
+)
+
+parser.add_argument(
     "-a",
     "--args",
     help="Additional arguments to pass to Manim",
@@ -62,6 +69,7 @@ args = parser.parse_args()
 class_name = args.class_name
 resolution = args.resolution
 preview = args.preview
+folder = args.folder
 additional_args_str = args.args
 
 scenes = load_scene_info()
@@ -94,8 +102,14 @@ if class_name in scenes:
         print(f"Error rendering {class_name}")
 
 elif class_name == "all":
+    foler_name = lambda scene: scenes[scene].split("/")[0]
+
+    should_render = lambda scene: scene != "Test" and (
+        folder == "" or (folder != "" and folder == foler_name(scene))
+    )
+
     for scene in scenes:
-        if scene == "Test":
+        if not should_render(scene):
             continue
         exit_code = os.system(manim_command.format(scenes[scene], scene))
         if exit_code == 0:

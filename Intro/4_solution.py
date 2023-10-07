@@ -117,20 +117,20 @@ class Solution(MyScene):
             "मराठी वीडियो (Marathi)",
             "ગુજરાતી વિડિઓ (Gujarati)",
             "తెలుగు వీడియో (Telugu)",
-            # "ਪੰਜਾਬੀ ਵੀਡੀਓ (Punjabi)",
-            # "বাংলা ভিডিও (Bengali)",
-            # "ଓଡ଼ିଆ ଭିଡ଼ିଓ (Odia)",
-            # "ಕನ್ನಡ ವೀಡಿಯೊ (Kannada)",
-            # "தமிழ் வீடியோ (Tamil)",
-            # "മലയാളം വീഡിയോ (Malayalam)",
-            # "मैथिली वीडियो (Maithili)",
-            # "मणिपुरी वीडियो (Manipuri)",
-            # "कोंकणी व्हिडिओ (Konkani)",
-            # "বোডো ভিডিও (Bodo)",
-            # "डोगरी वीडियो (Dogri)",
-            # "असमिया भिडिओ (Assamese)",
-            # "ਸੰਥਾਲੀ ਵੀਡੀਓ (Santali)",
-            # "संस्कृत वीडियो (Sanskrit)",
+            "ਪੰਜਾਬੀ ਵੀਡੀਓ (Punjabi)",
+            "বাংলা ভিডিও (Bengali)",
+            "ଓଡ଼ିଆ ଭିଡ଼ିଓ (Odia)",
+            "ಕನ್ನಡ ವೀಡಿಯೊ (Kannada)",
+            "தமிழ் வீடியோ (Tamil)",
+            "മലയാളം വീഡിയോ (Malayalam)",
+            "मैथिली वीडियो (Maithili)",
+            "मणिपुरी वीडियो (Manipuri)",
+            "कोंकणी व्हिडिओ (Konkani)",
+            "বোডো ভিডিও (Bodo)",
+            "डोगरी वीडियो (Dogri)",
+            "असमिया भिडिओ (Assamese)",
+            "ਸੰਥਾਲੀ ਵੀਡੀਓ (Santali)",
+            "संस्कृत वीडियो (Sanskrit)",
             "नेपाली भिडिओ (Nepali)",
             "हिंदी वीडियो (Hindi)",
         ]
@@ -182,9 +182,9 @@ class Solution(MyScene):
 
         self.wait(1)
 
-        dubbing = VGroup(
-            small_eng_vid_text, eng_rect, arrow_text, hin_vid_text, prev, hin_rect
-        )
+        # dubbing = VGroup(
+        #     small_eng_vid_text, eng_rect, arrow_text, hin_vid_text, prev, hin_rect
+        # )
 
         self.play(
             LaggedStartMap(FadeOut, intro, lag_ratio=0.2, run_time=1),
@@ -194,4 +194,3 @@ class Solution(MyScene):
             Unwrite(eng_rect, run_time=1.5),
             Unwrite(arrow_text, run_time=1.5),
         )
-        self.wait(0.5)

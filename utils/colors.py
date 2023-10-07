@@ -11,3 +11,5 @@ class MyColors:
     neuron_fill_color = "#00C0C0"
     edge_color = GREY_D
     edge_propogation_color = "#66CCCC"
+
+    youtube_red = "#FF0000"
