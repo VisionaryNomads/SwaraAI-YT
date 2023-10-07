@@ -139,6 +139,9 @@ class Solution(MyScene):
         self.play(
             LaggedStartMap(FadeIn, intro, lag_ratio=0.2, run_time=1),
             LaggedStartMap(FadeIn, desc, lag_ratio=0.2, run_time=2),
+        )
+        self.wait(0.5)
+        self.play(
             Create(eng_rect),
             Write(upload_btn),
         )
