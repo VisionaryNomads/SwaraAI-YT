@@ -24,7 +24,7 @@ class RV2RSV(RenderNetwork):
         return VGroup(video, video_label)
 
     def fade_start(self):
-        return False
+        return True
 
     def fade_end(self):
         return False

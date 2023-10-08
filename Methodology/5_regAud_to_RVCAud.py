@@ -24,7 +24,7 @@ class RA2RVCA(RenderNetwork):
         return VGroup(audio, label)
 
     def fade_start(self):
-        return False
+        return True
 
-    def slide_output(self):
+    def fade_end(self):
         return True

@@ -36,16 +36,16 @@ class RVCA2RV(RenderNetwork):
         return VGroup(video, video_label)
 
     def fade_start(self):
-        return False
+        return True
 
-    def slide_output(self):
+    def fade_end(self):
         return True
 
     def add_nn_input(self):
         return False
 
     def construct(self):
-        self.add(self.audio_group)
+        self.play(FadeIn(self.audio_group))
         self.wait(1)
 
         video_height = self.video_group.height / 2

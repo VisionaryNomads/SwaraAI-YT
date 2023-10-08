@@ -6,6 +6,7 @@ class MyColors:
     logo_text = WHITE
 
     highlight_color = "#00C0C0"
+    reference_color = GREY_BROWN
 
     neuron_stroke_color = "#00C0C0"
     neuron_fill_color = "#00C0C0"

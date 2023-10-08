@@ -5,7 +5,7 @@ from _imports import RenderNetwork
 
 class ET2RT(RenderNetwork):
     def nn_name(self):
-        return "Google Translate"
+        return "English Text to Regional Text using IndicBART"
 
     def nn_input(self):
         text = Paragraph(
@@ -28,7 +28,7 @@ class ET2RT(RenderNetwork):
     def nn_output(self):
         text = Paragraph(
             "अनुवादित भारतीय क्षेत्रीय",
-            "      भाषा पाठ",
+            "     भाषा    पाठ",
             alignment="center",
             font_size=20,
             line_spacing=0.8,
@@ -44,7 +44,7 @@ class ET2RT(RenderNetwork):
         return VGroup(border, text, label)
 
     def fade_start(self):
-        return False
+        return True
 
-    def slide_output(self):
+    def fade_end(self):
         return True

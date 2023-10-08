@@ -146,9 +146,7 @@ class Solution(MyScene):
             Write(upload_btn),
         )
         self.wait(0.5)
-        # Circumscribe
         self.play(Circumscribe(upload_btn, color=YELLOW, run_time=1.5, buff=0.2))
-        # self.play(Flash(upload_btn, color=WHITE, line_length=0.2, flash_radius=0.5))
         self.wait(0.5)
         self.play(
             FadeOut(upload_btn, run_time=0.25),
@@ -157,14 +155,12 @@ class Solution(MyScene):
         )
         self.wait(0.5)
         self.play(Circumscribe(select_lang, color=YELLOW, run_time=1.5, buff=0.2))
-        # self.play(Flash(select_lang, color=WHITE, flash_radius=0.6))
         self.wait(0.5)
         self.play(
             FadeOut(select_lang, shift=UP * 0.25), FadeIn(select_voice, shift=UP * 0.25)
         )
         self.wait(0.5)
         self.play(Circumscribe(select_voice, color=YELLOW, run_time=1.5, buff=0.2))
-        # self.play(Flash(select_voice, color=WHITE, flash_radius=0.6))
         self.wait(0.5)
         self.play(
             FadeOut(select_voice, run_time=0.5),

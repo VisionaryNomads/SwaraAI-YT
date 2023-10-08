@@ -5,7 +5,7 @@ from _imports import RenderNetwork, audio_wave
 
 class EA2ET(RenderNetwork):
     def nn_name(self):
-        return "Google Speech-to-Text"
+        return "English Audio to English Text using Whisper"
 
     def nn_input(self):
         audio = audio_wave(0, 4)
@@ -36,5 +36,5 @@ class EA2ET(RenderNetwork):
     def fade_start(self):
         return False
 
-    def slide_output(self):
+    def fade_end(self):
         return True

@@ -132,7 +132,7 @@ class RenderNetwork(NetworkScene):
             else FadeOut(Text(""))
         )
 
-        fade_anim = FadeOut(self.nn_output()) if self.fade_end() else FadeOut(Text(""))
+        fade_anim = FadeOut(self._nn_output()) if self.fade_end() else FadeOut(Text(""))
 
         self.play(
             FadeOut(self._nn_input()),

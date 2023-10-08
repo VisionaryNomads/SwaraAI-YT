@@ -10,7 +10,7 @@ class RT2RA(RenderNetwork):
     def nn_input(self):
         text = Paragraph(
             "अनुवादित भारतीय क्षेत्रीय",
-            "      भाषा पाठ",
+            "     भाषा    पाठ",
             alignment="center",
             font_size=20,
             line_spacing=0.8,
@@ -34,7 +34,7 @@ class RT2RA(RenderNetwork):
         return VGroup(audio, label)
 
     def fade_start(self):
-        return False
+        return True
 
-    def slide_output(self):
+    def fade_end(self):
         return True
