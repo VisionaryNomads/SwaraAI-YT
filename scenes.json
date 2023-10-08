@@ -1,5 +1,11 @@
 {
-    "Test": "Test/test.py",
+    "Intro": "Intro/1_intro.py",
+    "Introduction": "Intro/2_introduction.py",
+    "Problem": "Intro/3_problem.py",
+    "CurrentScenario": "Intro/4_currentScenario.py",
+    "Solution": "Intro/4_solution.py",
+    "Example": "Intro/5_example.py",
+    "Method": "Intro/6_method.py",
     "EV": "Methodology/0_start.py",
     "EV2EA": "Methodology/1_engVid_to_engAud.py",
     "EA2ET": "Methodology/2_engAud_to_engText.py",
@@ -14,11 +20,8 @@
     "WhyWav2Lip": "Methodology/6.5_whyWav2Lip.py",
     "RV2RSV": "Methodology/7_regVid_to_regSubVid.py",
     "RV": "Methodology/8_end.py",
-    "Intro": "Intro/1_intro.py",
-    "Introduction": "Intro/2_introduction.py",
-    "Problem": "Intro/3_problem.py",
-    "CurrentScenario": "Intro/4_currentScenario.py",
-    "Solution": "Intro/4_solution.py",
-    "Example": "Intro/5_example.py",
-    "Method": "Intro/6_method.py"
+    "AdditionalFeatures": "Methodology_2/0_start.py",
+    "Summarization": "Methodology_2/1_summarization.py",
+    "Enhancement": "Methodology_2/2_enhancement.py",
+    "Test": "Test/test.py"
 }

@@ -34,6 +34,9 @@ def parse_args_and_kwargs(args_str):
 
 
 def record_rendered_scene(scene_name, quality):
+    if scene_name == "Test":
+        return
+
     with open(LOG_FILE, "r") as log_file:
         lines = log_file.readlines()
 

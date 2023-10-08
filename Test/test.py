@@ -1,6 +1,6 @@
 from manim import *
 
-from logo import Tester
+from key_frames import Tester
 
 
 class Test(Tester):

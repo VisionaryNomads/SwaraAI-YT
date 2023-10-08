@@ -18,3 +18,6 @@ class RV(RenderNetwork):
 
         self.add(video_group_copy)
         self.play(Transform(video_group_copy, video_group))
+        self.wait(1)
+        self.play(FadeOut(video_group_copy))
+        self.wait(0.5)
