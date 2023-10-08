@@ -17,6 +17,7 @@
     "Intro": "Intro/1_intro.py",
     "Introduction": "Intro/2_introduction.py",
     "Problem": "Intro/3_problem.py",
+    "CurrentScenario": "Intro/4_currentScenario.py",
     "Solution": "Intro/4_solution.py",
     "Example": "Intro/5_example.py",
     "Method": "Intro/6_method.py"

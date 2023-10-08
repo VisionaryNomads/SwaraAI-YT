@@ -2,32 +2,14 @@
 
 import argparse
 import os
-import json
-import configparser
+import time
 
-
-def load_scene_info():
-    with open("scenes.json", "r") as json_file:
-        return json.load(json_file)
-
-
-def load_render_settings():
-    config = configparser.ConfigParser()
-    config.read("settings.cfg")
-    return config["RenderSettings"]
-
-
-def parse_args_and_kwargs(args_str):
-    args_list = args_str.split()
-    args = []
-    kwargs = {}
-    for arg in args_list:
-        if "=" in arg:
-            key, value = arg.split("=")
-            kwargs[key] = value
-        else:
-            args.append(arg)
-    return args, kwargs
+from helpers import (
+    load_scene_info,
+    load_render_settings,
+    parse_args_and_kwargs,
+    render_scene,
+)
 
 
 parser = argparse.ArgumentParser(description="SwaraAI-YT Manim Render")
@@ -65,12 +47,19 @@ parser.add_argument(
     default="",
 )
 
+parser.add_argument(
+    "--force",
+    help="Forcefully render scenes without checking timestamps",
+    action="store_true",
+)
+
 args = parser.parse_args()
 class_name = args.class_name
 resolution = args.resolution
 preview = args.preview
 folder = args.folder
 additional_args_str = args.args
+force_render = args.force
 
 scenes = load_scene_info()
 render_settings = load_render_settings()
@@ -93,31 +82,19 @@ error_render = []
 
 if class_name in scenes:
     scene = scenes[class_name]
-    exit_code = os.system(manim_command.format(scene, class_name))
-    if exit_code == 0:
-        print(f"Rendered {class_name}")
-        os.system("python3 export.py")
-        print(f"Exported {class_name}")
-    else:
-        print(f"Error rendering {class_name}")
+    render_scene(scene, class_name, resolution, manim_command, force_render)
 
 elif class_name == "all":
-    foler_name = lambda scene: scenes[scene].split("/")[0]
+    folder_name = lambda scene: scenes[scene].split("/")[0]
 
     should_render = lambda scene: scene != "Test" and (
-        folder == "" or (folder != "" and folder == foler_name(scene))
+        folder == "" or (folder != "" and folder == folder_name(scene))
     )
 
     for scene in scenes:
         if not should_render(scene):
             continue
-        exit_code = os.system(manim_command.format(scenes[scene], scene))
-        if exit_code == 0:
-            success_render.append(scene)
-            print(f"Rendered {scene}")
-        else:
-            error_render.append(scene)
-            print(f"Error rendering {scene}")
+        render_scene(scenes[scene], scene, resolution, manim_command, force_render)
 
     os.system("python3 export.py")
 

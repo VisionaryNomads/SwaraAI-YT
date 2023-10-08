@@ -5,12 +5,25 @@ from _imports import video_frame
 
 
 class Solution(MyScene):
-    _intro = "Solution"
+    _intro = "Our Solution"
 
     _desc = [
         "SwaraAI provides a solution to this problem. It allows users to quickly and easily dub videos into other Indian regional languages.",
         "The software produces a voiceover in a human-like voice, as well as text supers that are dubbed from English to other Indian regional languages.",
         "The translated voiceover is also in simple language, easy to understand, and not colloquial in nature.",
+    ]
+
+    _sub_intro = "Key Features of SwaraAI"
+
+    _features = [
+        "1. Supports languages spoken by 95 percent of Indian population.",
+        "2. Option to upload custom audio for dubbing the video.",
+        "3. Lip synchronization option for precise audio-visual alignment.",
+        "4. Option to add text supers in the video in regional languages.",
+        "5. Option to add subtitles in the video in regional languages.",
+        "6. Option to enhance the video and audio quality of the video.",
+        "7. Option to summarize the video in text of the regional language.",
+        "8. Future scope of adding sign language for hearing impaired.",
     ]
 
     def construct(self):
@@ -50,6 +63,45 @@ class Solution(MyScene):
                 .align_to(intro, LEFT)
             )
             desc.add(line)
+            down_shift -= line.height + 0.2
+
+        sub_intro = (
+            self.latex(
+                self._sub_intro,
+                10,
+                color=WHITE,
+                tex_environment="flushleft",
+            )
+            .next_to(title, gap, buff=0.5)
+            .align_to(title, LEFT)
+        )
+
+        down_shift = 0
+        features = VGroup()
+        for line in self._features:
+            line = (
+                self.latex(
+                    line,
+                    12,
+                    color=WHITE,
+                    tex_environment="flushleft",
+                    tex_to_color_map={
+                        "95 percent of Indian population": self.highlight_color,
+                        "upload custom audio": self.highlight_color,
+                        "lip synchronization": self.highlight_color,
+                        "add text supers": self.highlight_color,
+                        "add subtitles": self.highlight_color,
+                        "enhance the video and audio quality": self.highlight_color,
+                        "summarize the video": self.highlight_color,
+                        "sign language for hearing impaired": self.highlight_color,
+                    },
+                )
+                .set(width=8, height=0.27)
+                .next_to(sub_intro, gap + UP * 0.5, buff=0.5)
+                .shift(down_shift)
+                .align_to(sub_intro, LEFT)
+            )
+            features.add(line)
             down_shift -= line.height + 0.2
 
         eng_video = video_frame()
@@ -170,7 +222,7 @@ class Solution(MyScene):
         self.play(Write(hin_vid_text), Create(hin_rect))
 
         prev = hin_text
-        for lang in languages:
+        for lang in languages[: len(languages) // 3]:
             text = Text(lang, color=WHITE, font="Sans", font_size=15).move_to(prev)
             self.play(
                 FadeOut(prev, shift=UP * 0.25),
@@ -179,16 +231,46 @@ class Solution(MyScene):
             prev = text
             self.wait(0.5)
 
-        self.wait(1)
-
-        # dubbing = VGroup(
-        #     small_eng_vid_text, eng_rect, arrow_text, hin_vid_text, prev, hin_rect
-        # )
+        text = Text(
+            languages[len(languages) // 3], color=WHITE, font="Sans", font_size=15
+        ).move_to(prev)
 
         self.play(
             LaggedStartMap(FadeOut, intro, lag_ratio=0.2, run_time=1),
             LaggedStartMap(FadeOut, desc, lag_ratio=0.2, run_time=2),
             # LaggedStartMap(FadeOut, dubbing, lag_ratio=0.2, run_time=1),
+            FadeOut(prev, shift=UP * 0.25),
+            FadeIn(text, shift=UP * 0.25),
+        )
+
+        prev = text
+        self.wait(0.5)
+        text = Text(
+            languages[len(languages) // 3 + 1], color=WHITE, font="Sans", font_size=15
+        ).move_to(prev)
+
+        self.play(
+            LaggedStartMap(FadeIn, sub_intro, lag_ratio=0.2, run_time=1),
+            LaggedStartMap(FadeIn, features, lag_ratio=0.2, run_time=2),
+            FadeOut(prev, shift=UP * 0.25),
+            FadeIn(text, shift=UP * 0.25),
+        )
+
+        prev = text
+        self.wait(0.5)
+
+        for lang in languages[len(languages) // 3 + 2 :]:
+            text = Text(lang, color=WHITE, font="Sans", font_size=15).move_to(prev)
+            self.play(
+                FadeOut(prev, shift=UP * 0.25),
+                FadeIn(text, shift=UP * 0.25),
+            )
+            prev = text
+            self.wait(0.5)
+
+        self.play(
+            LaggedStartMap(FadeOut, sub_intro, lag_ratio=0.2, run_time=1),
+            LaggedStartMap(FadeOut, features, lag_ratio=0.2, run_time=2),
             Unwrite(small_eng_vid_text, run_time=1.5),
             Unwrite(eng_rect, run_time=1.5),
             Unwrite(arrow_text, run_time=1.5),
