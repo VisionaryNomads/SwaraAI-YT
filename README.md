@@ -20,7 +20,25 @@ pip3 install -r requirements.txt
 python3 main.py {SCENE} -r {RESOLUTION}
 ```
 
+To render all the scenes, execute `python3 main.py all -r {RESOLUTION}`.
+
+To render scenes in a specific folder, execute `python3 main.py all -f {FOLDER} -r {RESOLUTION}`.
+
+## Help
+
 For more information, execute `python3 main.py --help`.
+
+### Quality of the Video
+
+720p30 is the default resolution. To change the resolution, use the `-r` flag.
+
+Flags for resolution:
+
+- `-rl 480p15 (854x480)`
+- `-rm 720p30 (1280x720)`
+- `-rh 1080p60 (1920x1080)`
+- `-rp 1440p60 (2560x1440)`
+- `-rk 2160p60 (3840x2160)`
 
 ---
 
