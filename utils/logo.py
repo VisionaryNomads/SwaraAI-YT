@@ -48,9 +48,19 @@ def logo_text(stroke_width=2):
     return text
 
 
-def logo(bg_opacity=_bg_opacity):
-    _logo_bg = logo_bg(bg_opacity)
-    _logo_text = logo_text()
+class Logo(Scene):
+    """
+    SwaraAI Logo
 
-    logo = VGroup(_logo_bg, _logo_text)
-    return logo
+    To create the logo, use the following command:
+    ```bash
+    manim utils/logo.py Logo -p -qk -t
+    ```
+    """
+
+    def construct(self):
+        _logo_bg = logo_bg(0.75)
+        _logo_text = logo_text(2)
+
+        self.add(_logo_bg)
+        self.add(_logo_text)

@@ -1,5 +1,7 @@
 # SwaraAI - From English to Everyone
 
+![SwaraAI](logo.png)
+
 ## YouTube Video
 
 Created using [manim](https://www.manim.community/).
