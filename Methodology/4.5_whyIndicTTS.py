@@ -34,7 +34,7 @@ class WhyIndicTTS(Scene):
             line = (
                 latex(
                     line,
-                    16,
+                    14,
                     color=WHITE,
                     tex_environment="flushleft",
                     tex_to_color_map={
