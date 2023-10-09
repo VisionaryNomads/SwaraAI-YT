@@ -2,7 +2,6 @@
 
 import argparse
 import os
-import time
 
 from helpers import (
     load_scene_info,
@@ -80,9 +79,18 @@ manim_command += f"{FLAGS} {' '.join(additional_args)}"
 success_render = []
 error_render = []
 
+add_status = (
+    lambda scene, is_rendered: success_render.append(scene)
+    if is_rendered
+    else error_render.append(scene)
+)
+
 if class_name in scenes:
     scene = scenes[class_name]
-    render_scene(scene, class_name, resolution, manim_command, force_render)
+    is_rendered = render_scene(
+        scene, class_name, resolution, manim_command, force_render
+    )
+    add_status(class_name, is_rendered)
 
 elif class_name == "all":
     folder_name = lambda scene: scenes[scene].split("/")[0]
@@ -94,7 +102,10 @@ elif class_name == "all":
     for scene in scenes:
         if not should_render(scene):
             continue
-        render_scene(scenes[scene], scene, resolution, manim_command, force_render)
+        is_rendered = render_scene(
+            scenes[scene], scene, resolution, manim_command, force_render
+        )
+        add_status(scene, is_rendered)
 
     os.system("python3 export.py")
 

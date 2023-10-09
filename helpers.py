@@ -68,11 +68,12 @@ def render_scene(scene_path, class_name, quality, manim_command, force_render):
         if exit_code == 0:
             print(f"Rendered {class_name} at quality {quality}")
             record_rendered_scene(class_name, quality)
-            os.system("python3 export.py")
-            print(f"Exported {class_name}")
         else:
             print(f"Error rendering {class_name}")
+
+        return exit_code == 0
     else:
         print(
             f"No changes in {class_name} at quality {quality} since last render on {last_render_timestamp}"
         )
+        return True
