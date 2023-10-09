@@ -23,5 +23,10 @@
     "AdditionalFeatures": "Methodology_2/0_start.py",
     "Summarization": "Methodology_2/1_summarization.py",
     "Enhancement": "Methodology_2/2_enhancement.py",
+    "SignLanguage": "Methodology_2/3_signLanguage.py",
+    "AnotherExample": "Outro/1_anotherExample.py",
+    "Business": "Outro/2_business.py",
+    "Conclusion": "Outro/3_conclusion.py",
+    "ThankYou": "Outro/4_thankYou.py",
     "Test": "Test/test.py"
 }

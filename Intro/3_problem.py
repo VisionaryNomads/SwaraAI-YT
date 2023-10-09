@@ -1,6 +1,7 @@
 from manim import *
 
 from _base import MyScene
+from _imports import latex
 
 
 class Problem(MyScene):
@@ -16,7 +17,7 @@ class Problem(MyScene):
 
         title = self.get_title()
         intro = (
-            self.latex(
+            latex(
                 self._intro,
                 10,
                 color=WHITE,
@@ -30,7 +31,7 @@ class Problem(MyScene):
         desc = VGroup()
         for line in self._desc:
             line = (
-                self.latex(
+                latex(
                     line,
                     16,
                     color=WHITE,

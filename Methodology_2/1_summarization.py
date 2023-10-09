@@ -100,7 +100,7 @@ class Summarization(Scene):
 
         key_frames = self.key_frames()
         key_frames.scale(1 / 3)
-        key_frames.next_to(eng_video, RIGHT * 2 + UP, buff=0.5)
+        key_frames.next_to(eng_video, RIGHT * 3 + UP, buff=0.5)
 
         key_frames_desc = latex(
             "Key Frames",
@@ -123,7 +123,7 @@ class Summarization(Scene):
             font_size=10,
         )
         eng_captions.match_width(key_frames)
-        eng_captions.next_to(eng_video, RIGHT * 2 + DOWN * 2, buff=0.5)
+        eng_captions.next_to(eng_video, RIGHT * 3 + DOWN * 2, buff=0.5)
 
         eng_captions_to_key_frames = Arrow(
             eng_video.get_right(),

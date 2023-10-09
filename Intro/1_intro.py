@@ -1,7 +1,7 @@
 from manim import *
 
 from _base import MyScene
-from _imports import video_frame, logo_bg, logo_text, logo
+from _imports import video_frame, logo_bg, logo_text, latex
 
 
 class Intro(MyScene):
@@ -27,7 +27,7 @@ class Intro(MyScene):
         return logo
 
     def get_description(self):
-        return self.latex(
+        return latex(
             self._description,
             20,
             color=WHITE,
@@ -36,10 +36,10 @@ class Intro(MyScene):
         ).set(width=8)
 
     def get_ps(self):
-        return self.latex(self._ps, 8, color=GRAY_B)
+        return latex(self._ps, 8, color=GRAY_B)
 
     def get_team(self):
-        return self.latex(self._team, 12, color=GRAY_B)
+        return latex(self._team, 12, color=GRAY_B)
 
     def get_dub_animation(self):
         eng_video = video_frame()

@@ -1,7 +1,7 @@
 from manim import *
 
 from _base import MyScene
-from _imports import video_frame
+from _imports import video_frame, latex
 
 
 class Solution(MyScene):
@@ -31,7 +31,7 @@ class Solution(MyScene):
 
         title = self.get_title()
         intro = (
-            self.latex(
+            latex(
                 self._intro,
                 10,
                 color=WHITE,
@@ -45,7 +45,7 @@ class Solution(MyScene):
         desc = VGroup()
         for line in self._desc:
             line = (
-                self.latex(
+                latex(
                     line,
                     15,
                     color=WHITE,
@@ -66,7 +66,7 @@ class Solution(MyScene):
             down_shift -= line.height + 0.2
 
         sub_intro = (
-            self.latex(
+            latex(
                 self._sub_intro,
                 10,
                 color=WHITE,
@@ -80,7 +80,7 @@ class Solution(MyScene):
         features = VGroup()
         for line in self._features:
             line = (
-                self.latex(
+                latex(
                     line,
                     12,
                     color=WHITE,
@@ -88,7 +88,7 @@ class Solution(MyScene):
                     tex_to_color_map={
                         "95 percent of Indian population": self.highlight_color,
                         "upload custom audio": self.highlight_color,
-                        "lip synchronization": self.highlight_color,
+                        "Lip synchronization": self.highlight_color,
                         "add text supers": self.highlight_color,
                         "add subtitles": self.highlight_color,
                         "enhance the video and audio quality": self.highlight_color,

@@ -1,7 +1,7 @@
 from manim import *
 
 from _base import MyScene
-from _imports import MyColors
+from _imports import MyColors, latex
 
 
 class CurrentScenario(MyScene):
@@ -23,7 +23,7 @@ class CurrentScenario(MyScene):
 
         title = self.get_title()
         intro = (
-            self.latex(
+            latex(
                 self._intro,
                 10,
                 color=WHITE,
@@ -37,7 +37,7 @@ class CurrentScenario(MyScene):
         desc = VGroup()
         for line in self._desc:
             line = (
-                self.latex(
+                latex(
                     line,
                     12,
                     color=WHITE,
@@ -58,7 +58,7 @@ class CurrentScenario(MyScene):
 
         for line in self._examples:
             line = (
-                self.latex(
+                latex(
                     line,
                     12,
                     color=WHITE,
@@ -82,9 +82,9 @@ class CurrentScenario(MyScene):
         deepdub_logo = ImageMobject("images/Deepdub.png")
         resemble_logo = ImageMobject("images/Resemble.png")
 
-        debverse_logo.set(width=1.5)
-        deepdub_logo.set(width=1.5)
-        resemble_logo.set(width=1.5)
+        debverse_logo.set(width=1.5).scale(1.5)
+        deepdub_logo.set(width=1.5).scale(1.5)
+        resemble_logo.set(width=1.5).scale(1.5)
 
         debverse_logo.next_to(examples[0], RIGHT, buff=0.5)
         deepdub_logo.next_to(examples[1], RIGHT, buff=0.5)

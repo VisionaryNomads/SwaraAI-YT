@@ -3,7 +3,7 @@ import os
 import cv2
 
 from _base import MyScene
-from _imports import video_frame
+from _imports import video_frame, latex
 
 
 class Example(MyScene):
@@ -20,7 +20,7 @@ class Example(MyScene):
         desc = VGroup()
         for line in self._desc:
             line = (
-                self.latex(
+                latex(
                     line,
                     16,
                     color=WHITE,

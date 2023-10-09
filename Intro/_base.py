@@ -1,13 +1,10 @@
 from manim import *
 
-from _imports import logo_bg, logo_text, latex, MyColors
+from _imports import logo_bg, logo_text, MyColors
 
 
 class MyScene(Scene):
     highlight_color = MyColors.highlight_color
-
-    def latex(self, text, font_size, **kwargs):
-        return latex(text, font_size, **kwargs)
 
     def get_title(self):
         _logo_bg = logo_bg(0.25)

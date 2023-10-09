@@ -91,6 +91,8 @@ if class_name in scenes:
         scene, class_name, resolution, manim_command, force_render
     )
     add_status(class_name, is_rendered)
+    os.system("python3 export.py")
+    print(f"Exported {class_name}")
 
 elif class_name == "all":
     folder_name = lambda scene: scenes[scene].split("/")[0]

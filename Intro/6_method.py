@@ -1,36 +1,36 @@
 from manim import *
 
 from _base import MyScene
-from _imports import video_frame, MyColors
+from _imports import video_frame, MyColors, latex
 
 
 class Method(MyScene):
     def construct(self):
-        magic_text = self.latex(
+        magic_text = latex(
             "Saw a magic?",
             font_size=40,
             color=MyColors.highlight_color,
         )
 
-        how_works_text = self.latex(
+        how_works_text = latex(
             "Let's see how it works in detail.",
             color=WHITE,
             font_size=15,
         )
 
-        proposed_solution = self.latex(
+        proposed_solution = latex(
             "Our proposed solution",
             color=MyColors.highlight_color,
             font_size=40,
         )
 
-        starting_text = self.latex(
+        starting_text = latex(
             "It all starts with a video upload.",
             color=WHITE,
             font_size=15,
         )
 
-        lets_upload = self.latex(
+        lets_upload = latex(
             "Let's upload a video..",
             color=WHITE,
             font_size=10,

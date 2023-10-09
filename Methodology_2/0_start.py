@@ -33,7 +33,7 @@ class AdditionalFeatures(Scene):
         )
 
         feature_3 = latex(
-            "3. Sign Language support (future scope)",
+            "3. Sign Language Support (future scope)",
             color=WHITE,
             font_size=10,
         )
