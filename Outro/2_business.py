@@ -92,14 +92,14 @@ class Business(MyScene):
         )
         self.play(Write(business_model))
 
-        self.wait(4)
+        self.wait(40)
 
         self.play(
             LaggedStartMap(FadeOut, desc, lag_ratio=0.2, run_time=1),
             LaggedStartMap(FadeIn, desc_2, lag_ratio=0.2, run_time=3),
         )
 
-        self.wait(4)
+        self.wait(34)
 
         self.play(
             LaggedStartMap(FadeOut, intro, lag_ratio=0.2, run_time=1),

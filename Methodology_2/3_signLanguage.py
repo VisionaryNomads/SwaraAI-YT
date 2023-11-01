@@ -9,9 +9,9 @@ class SignLanguage(Scene):
     _desc = [
         "Sign Language Support is creating a video that can be understood by deaf and dumb people. An avatar will be created in video that will perform sign language. Every one finds vocal communication simpler and no one should ever be denied the right to communicate.",
         # Why is it needed?
-        "It is needed because deaf and dumb people can't understand the content of the video. They can't understand the content of the video even if it is in their regional language.",
+        "Deaf and mute individuals may struggle to comprehend video content, even if it's in their native language.",
         # How SwaraAI will handle it?
-        "SwaraAI will create an avatar that will perform sign language in the video. Avatar will perform sign language in the Indian Sign Language (ISL).",
+        "SwaraAI will introduce an avatar proficient in Indian Sign Language (ISL) to convey the video's message.",
     ]
 
     def quality_box(self, quality):
@@ -67,8 +67,8 @@ class SignLanguage(Scene):
                     color=WHITE,
                     tex_environment="flushleft",
                     tex_to_color_map={
-                        "Sign Language Support": MyColors.highlight_color,
-                        "deaf and dumb people": MyColors.highlight_color,
+                        "struggle": MyColors.highlight_color,
+                        "native language": MyColors.highlight_color,
                         "avatar": MyColors.highlight_color,
                         "Indian Sign Language (ISL)": MyColors.highlight_color,
                     },
@@ -98,7 +98,7 @@ class SignLanguage(Scene):
                 run_time=2,
             )
         )
-        self.wait(5)
+        self.wait(70)
 
         self.play(
             LaggedStartMap(FadeOut, desc, lag_ratio=0.2, run_time=2),

@@ -8,9 +8,9 @@ class Conclusion(MyScene):
     _intro = "Conclusion"
 
     _desc = [
-        "Swara.AI is defined to empower voices, enrich content and bridge gaps.",
-        "We are a team of 6 members, who are passionate about our work and are determined to make a difference in the world.",
+        "SwaraAI is defined to empower voices, enrich content and bridge gaps.",
         "We are looking forward to your support and guidance in our journey. Join us on this journey to make the digital world accessible, engaging, and inclusive for all !",
+        "We are a team of 6 members, who are passionate about our work and are determined to make a difference in the world.",
     ]
 
     def construct(self):
@@ -64,7 +64,7 @@ class Conclusion(MyScene):
         )
         self.play(Write(team, run_time=2))
 
-        self.wait(4)
+        self.wait(9)
 
         self.play(
             LaggedStartMap(FadeOut, intro, lag_ratio=0.2, run_time=1),

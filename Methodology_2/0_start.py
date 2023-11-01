@@ -62,7 +62,7 @@ class AdditionalFeatures(Scene):
                 lag_ratio=0.5,
             )
         )
-        self.wait(2)
+        self.wait(4)
 
         self.play(
             FadeOut(additional_features),

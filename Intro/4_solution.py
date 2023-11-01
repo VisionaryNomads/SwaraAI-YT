@@ -268,6 +268,8 @@ class Solution(MyScene):
             prev = text
             self.wait(0.5)
 
+        self.wait(12)
+
         self.play(
             LaggedStartMap(FadeOut, sub_intro, lag_ratio=0.2, run_time=1),
             LaggedStartMap(FadeOut, features, lag_ratio=0.2, run_time=2),

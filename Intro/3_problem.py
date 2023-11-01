@@ -75,7 +75,7 @@ class Problem(MyScene):
         )
         self.play(FadeIn(langp))
 
-        self.wait(4)
+        self.wait(10)
 
         self.play(
             LaggedStartMap(FadeOut, intro, lag_ratio=0.2, run_time=1),

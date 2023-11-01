@@ -7,8 +7,9 @@ class WhyWav2Lip(Scene):
     _intro = "Why Wav2Lip?"
 
     _desc = [
-        "RVC is an advanced AI technology that excels in creating highly realistic AI voice models. It utilizes deep learning algorithms to analyze and replicate human voices with astonishing accuracy.",
-        "RVC V2 takes the voice cloning technology to the next level by providing a more realistic and natural voice. It requires less than 10 minutes of audio to create a voice model.",
+        "Wav2Lip is a lip-syncing algorithm that can accurately map lip movements from an audio input to a video of a face.",
+        "It is a state-of-the-art lip-syncing algorithm that can be used to create deepfakes.",
+        "It is created by researchers at the Indian Institute of Information Technology, Hyderabad (IIIT-H).",
     ]
 
     _ref = "http://bhaasha.iiit.ac.in/lipsync/"
@@ -36,10 +37,10 @@ class WhyWav2Lip(Scene):
                     color=WHITE,
                     tex_environment="flushleft",
                     tex_to_color_map={
-                        "excels": MyColors.highlight_color,
-                        "analyze and replicate human voices": MyColors.highlight_color,
-                        "realistic and natural voice": MyColors.highlight_color,
-                        "less than 10 minutes of audio": MyColors.highlight_color,
+                        "lip-syncing algorithm": MyColors.highlight_color,
+                        "state-of-the-art lip-syncing algorithm": MyColors.highlight_color,
+                        "create deepfakes": MyColors.highlight_color,
+                        "Indian Institute of Information Technology, Hyderabad (IIIT-H)": MyColors.highlight_color,
                     },
                 )
                 .set(width=8)
@@ -76,7 +77,7 @@ class WhyWav2Lip(Scene):
             )
         )
         self.play(FadeIn(reference))
-        self.wait(5)
+        self.wait(13)
         self.play(
             LaggedStartMap(
                 FadeOut, VGroup(intro, desc, reference), lag_ratio=0.1, run_time=2

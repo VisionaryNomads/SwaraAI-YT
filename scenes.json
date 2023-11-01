@@ -27,6 +27,7 @@
     "AnotherExample": "Outro/1_anotherExample.py",
     "Business": "Outro/2_business.py",
     "Conclusion": "Outro/3_conclusion.py",
+    "Team": "Outro/3.5_team.py",
     "ThankYou": "Outro/4_thankYou.py",
     "Test": "Test/test.py"
 }

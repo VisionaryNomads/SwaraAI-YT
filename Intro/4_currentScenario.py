@@ -96,25 +96,31 @@ class CurrentScenario(MyScene):
 
         self.play(
             LaggedStartMap(FadeIn, intro, lag_ratio=0.2, run_time=1),
-            LaggedStartMap(FadeIn, desc, lag_ratio=0.2, run_time=2),
+            LaggedStartMap(FadeIn, desc[0], lag_ratio=0.2, run_time=2),
         )
-
-        for i in range(3):
-            self.play(
-                FadeIn(examples[i], shift=UP * 0.5),
-                FadeIn(logos[i], shift=UP * 0.5),
-                run_time=2,
-            )
-            self.wait(3)
-            self.play(
-                FadeOut(examples[i], shift=UP),
-                FadeOut(logos[i], shift=UP),
-                run_time=2,
-            )
-
-        self.wait(1)
+        self.wait(41)
+        self.play(LaggedStartMap(FadeIn, desc[1], lag_ratio=0.2, run_time=2))
+        self.wait(3.5)
+        self.play(FadeIn(examples[0], shift=UP * 0.5), FadeIn(logos[0], shift=UP * 0.5))
+        self.wait(9)
+        self.play(
+            FadeOut(examples[0], shift=UP * 0.5),
+            FadeOut(logos[0], shift=UP * 0.5),
+            FadeIn(examples[1], shift=UP * 0.5),
+            FadeIn(logos[1], shift=UP * 0.5),
+        )
+        self.wait(8)
+        self.play(
+            FadeOut(examples[1], shift=UP * 0.5),
+            FadeOut(logos[1], shift=UP * 0.5),
+            FadeIn(examples[2], shift=UP * 0.5),
+            FadeIn(logos[2], shift=UP * 0.5),
+        )
+        self.wait(5)
 
         self.play(
             LaggedStartMap(FadeOut, intro, lag_ratio=0.2, run_time=1),
             LaggedStartMap(FadeOut, desc, lag_ratio=0.2, run_time=2),
+            LaggedStartMap(FadeOut, examples[2], lag_ratio=0.2, run_time=2),
+            LaggedStartMap(FadeOut, logos[2], lag_ratio=0.2, run_time=2),
         )

@@ -102,7 +102,8 @@ class Enhancement(Scene):
         self.play(Write(heading))
         self.play(LaggedStartMap(FadeIn, desc, lag_ratio=0.2, run_time=2))
         self.play(Write(qlt_grp), run_time=2)
-        self.wait(5)
+
+        self.wait(40)
 
         self.play(
             LaggedStartMap(FadeOut, desc, lag_ratio=0.2, run_time=2),

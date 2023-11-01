@@ -2,19 +2,32 @@ from manim import *
 import os
 import cv2
 
-from _imports import video_frame, latex
+from _imports import video_frame, latex, MyColors
 
 
 class AnotherExample(MovingCameraScene):
-    _intro = "Let's see another example dubbed video."
+    _intro = "That's SwaraAI!"
+    _desc = "Let's see another example dubbed video."
 
     def construct(self):
         intro = latex(
             self._intro,
-            10,
-            color=WHITE,
+            15,
+            color=MyColors.highlight_color,
             tex_environment="flushleft",
         ).to_corner(UL, buff=1)
+
+        desc = (
+            latex(
+                self._desc,
+                10,
+                color=WHITE,
+                tex_environment="flushleft",
+            )
+            .set(width=10)
+            .next_to(intro, DOWN, buff=0.5)
+            .align_to(intro, LEFT)
+        )
 
         # Frame 1
         eng_video = video_frame(corner_radius=0)
@@ -116,8 +129,10 @@ class AnotherExample(MovingCameraScene):
         cap.release()
 
         self.play(Write(intro))
-        self.wait(0.5)
-        self.play(FadeOut(intro))
+        self.wait(10)
+        self.play(Write(desc))
+        self.wait(2)
+        self.play(FadeOut(intro), FadeOut(desc))
         self.play(FadeIn(eng_video_grp))
         self.wait(0.5)
 

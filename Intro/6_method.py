@@ -54,7 +54,7 @@ class Method(MyScene):
         self.play(Write(magic_text))
         self.wait(0.5)
         self.play(Write(how_works_text))
-        self.wait(1)
+        self.wait(8)
         self.play(FadeOut(magic_text), FadeOut(how_works_text))
         self.wait(0.5)
         self.play(Write(proposed_solution))

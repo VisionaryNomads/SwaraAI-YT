@@ -1,10 +1,8 @@
-# SwaraAI - From English to Everyone
+# SwaraAI - YouTube Video
 
-![SwaraAI](logo.png)
+[![SwaraAI Logo](logo.png)](https://www.youtube.com/watch?v=vvcQfcdNtH8)
 
-## YouTube Video
-
-Created using [manim](https://www.manim.community/).
+YouTube video: [https://youtu.be/vvcQfcdNtH8](https://www.youtube.com/watch?v=vvcQfcdNtH8)
 
 ## Flow of the Presentation
 
@@ -44,4 +42,5 @@ Flags for resolution:
 
 ---
 
-Created by [Gopal Saraf](https://gopalsaraf.com/).
+Created by [Gopal Saraf](https://gopalsaraf.com/).  
+Created using [manim](https://www.manim.community/).

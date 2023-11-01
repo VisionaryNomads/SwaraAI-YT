@@ -87,7 +87,7 @@ class Intro(MyScene):
         _e, _t, _h = dubbing
 
         title = self.add_title()
-        self.wait(1)
+        self.wait(0.5)
 
         gap = DOWN * 1.5
 
@@ -109,7 +109,7 @@ class Intro(MyScene):
         self.wait(0.5)
         self.play(Write(_h, run_time=1.5))
 
-        self.wait(4)
+        self.wait(1)
 
         self.play(
             LaggedStartMap(FadeOut, description, lag_ratio=0.2),

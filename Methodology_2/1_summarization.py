@@ -78,7 +78,7 @@ class Summarization(Scene):
         self.play(
             LaggedStartMap(FadeIn, desc, lag_ratio=0.2, run_time=2),
         )
-        self.wait(5)
+        self.wait(36)
 
         self.play(
             LaggedStartMap(FadeOut, desc, lag_ratio=0.2, run_time=2),
@@ -218,7 +218,7 @@ class Summarization(Scene):
             )
         )
 
-        self.wait(5)
+        self.wait(22)
 
         self.play(
             LaggedStartMap(

@@ -76,7 +76,7 @@ class WhyRVC(Scene):
             )
         )
         self.play(FadeIn(reference))
-        self.wait(5)
+        self.wait(21)
         self.play(
             LaggedStartMap(
                 FadeOut, VGroup(intro, desc, reference), lag_ratio=0.1, run_time=2

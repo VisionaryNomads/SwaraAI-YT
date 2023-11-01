@@ -108,7 +108,7 @@ class Introduction(MyScene):
             Transform(
                 image_group,
                 image_group.copy().shift((UP * image_group_height + UP * 2) * 0.1),
-                run_time=4,
+                run_time=2,
                 rate_func=linear,
             ),
             LaggedStartMap(FadeOut, intro, lag_ratio=0.2, run_time=1),

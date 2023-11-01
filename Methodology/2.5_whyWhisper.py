@@ -86,7 +86,7 @@ class WhyWhisper(Scene):
         )
         self.play(Write(whisper_svg))
         self.play(FadeIn(reference))
-        self.wait(5)
+        self.wait(15)
         self.play(
             LaggedStartMap(
                 FadeOut,
