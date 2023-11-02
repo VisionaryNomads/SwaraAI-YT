@@ -55,8 +55,8 @@ def get_scene_timestamp(scene_name, quality):
     return None
 
 
-def render_scene(scene_path, class_name, quality, manim_command, force_render):
-    last_render_timestamp = get_scene_timestamp(class_name, quality)
+def render_scene(scene_path, scene, quality, manim_command, force_render):
+    last_render_timestamp = get_scene_timestamp(scene, quality)
 
     if (
         force_render
@@ -64,16 +64,16 @@ def render_scene(scene_path, class_name, quality, manim_command, force_render):
         or os.path.getmtime(scene_path)
         > time.mktime(time.strptime(last_render_timestamp, "%Y-%m-%d %H:%M:%S"))
     ):
-        exit_code = os.system(manim_command.format(scene_path, class_name))
+        exit_code = os.system(manim_command.format(scene_path, scene))
         if exit_code == 0:
-            print(f"Rendered {class_name} at quality {quality}")
-            record_rendered_scene(class_name, quality)
+            print(f"Rendered {scene} at quality {quality}")
+            record_rendered_scene(scene, quality)
         else:
-            print(f"Error rendering {class_name}")
+            print(f"Error rendering {scene}")
 
         return exit_code == 0
     else:
         print(
-            f"No changes in {class_name} at quality {quality} since last render on {last_render_timestamp}"
+            f"No changes in {scene} at quality {quality} since last render on {last_render_timestamp}"
         )
         return True

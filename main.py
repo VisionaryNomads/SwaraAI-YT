@@ -13,8 +13,8 @@ from helpers import (
 
 parser = argparse.ArgumentParser(description="SwaraAI-YT Manim Render")
 parser.add_argument(
-    "class_name",
-    help="Name of the class to be rendered. Use 'all' to render all scenes.",
+    "scene",
+    help="Name of the scene to be rendered. Use 'all' to render all scenes.",
 )
 
 parser.add_argument(
@@ -53,7 +53,7 @@ parser.add_argument(
 )
 
 args = parser.parse_args()
-class_name = args.class_name
+scene = args.scene
 resolution = args.resolution
 preview = args.preview
 folder = args.folder
@@ -85,41 +85,41 @@ add_status = (
     else error_render.append(scene)
 )
 
-if class_name in scenes:
-    scene = scenes[class_name]
+if scene in scenes:
+    scene_path = scenes[scene]
     is_rendered = render_scene(
-        scene, class_name, resolution, manim_command, force_render
+        scene_path, scene, resolution, manim_command, force_render
     )
-    add_status(class_name, is_rendered)
+    add_status(scene, is_rendered)
     os.system("python3 export.py")
-    print(f"Exported {class_name}")
+    print(f"Exported {scene}")
 
-elif class_name == "all":
+elif scene == "all":
     folder_name = lambda scene: scenes[scene].split("/")[0]
 
     should_render = lambda scene: scene != "Test" and (
         folder == "" or (folder != "" and folder == folder_name(scene))
     )
 
-    for scene in scenes:
-        if not should_render(scene):
+    for scene_path in scenes:
+        if not should_render(scene_path):
             continue
         is_rendered = render_scene(
-            scenes[scene], scene, resolution, manim_command, force_render
+            scenes[scene_path], scene_path, resolution, manim_command, force_render
         )
-        add_status(scene, is_rendered)
+        add_status(scene_path, is_rendered)
 
     os.system("python3 export.py")
 
     if len(success_render) > 0:
         print("Rendered scenes:")
-        for scene in success_render:
-            print(scene)
+        for scene_path in success_render:
+            print(scene_path)
 
     if len(error_render) > 0:
         print("Error rendering scenes:")
-        for scene in error_render:
-            print(scene)
+        for scene_path in error_render:
+            print(scene_path)
 
 else:
-    print(f"Scene {class_name} not found")
+    print(f"Scene {scene} not found")
