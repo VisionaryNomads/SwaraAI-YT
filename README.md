@@ -10,16 +10,41 @@ This video is created in many scenes. All the exports are in the [`exports`](exp
 
 ## Installation
 
+Clone the repository by executing the following command in the terminal.
+
 ```bash
 git clone https://github.com/VisionaryNomads/SwaraAI-YT.git
 cd SwaraAI-YT
+```
+
+Install the dependencies by executing the following command in the terminal.
+
+#### Unix (Linux, macOS)
+
+```bash
 pip3 install -r requirements.txt
+```
+
+#### Windows
+
+```bash
+pip install -r requirements.txt
 ```
 
 ## Command to render the scenes
 
+Render the scenes by executing the following command in the terminal.
+
+#### Unix (Linux, macOS)
+
 ```bash
 python3 main.py {SCENE} -r {RESOLUTION}
+```
+
+#### Windows
+
+```bash
+python main.py {SCENE} -r {RESOLUTION}
 ```
 
 SCENE can be any of the key in the [`scenes.json`](scenes.json) file.
@@ -33,6 +58,8 @@ To render scenes in a specific folder, execute `python3 main.py all -f {FOLDER} 
 ## Help
 
 For more information, execute `python3 main.py --help`.
+
+For windows, execute `python main.py --help`.
 
 ### Quality of the Video
 

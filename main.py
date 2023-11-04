@@ -1,7 +1,7 @@
-#!/usr/bin/env python3
-
 import argparse
 import os
+import sys
+
 
 from helpers import (
     load_scene_info,
@@ -9,7 +9,6 @@ from helpers import (
     parse_args_and_kwargs,
     render_scene,
 )
-
 
 parser = argparse.ArgumentParser(description="SwaraAI-YT Manim Render")
 parser.add_argument(
@@ -76,6 +75,8 @@ additional_args, additional_kwargs = parse_args_and_kwargs(additional_args_str)
 manim_command = "manim {} {} "
 manim_command += f"{FLAGS} {' '.join(additional_args)}"
 
+python = "python" if sys.platform == "win32" else "python3"
+
 success_render = []
 error_render = []
 
@@ -91,7 +92,7 @@ if scene in scenes:
         scene_path, scene, resolution, manim_command, force_render
     )
     add_status(scene, is_rendered)
-    os.system("python3 export.py")
+    os.system(f"{python} export.py")
     print(f"Exported {scene}")
 
 elif scene == "all":
@@ -109,7 +110,7 @@ elif scene == "all":
         )
         add_status(scene_path, is_rendered)
 
-    os.system("python3 export.py")
+    os.system(f"{python} export.py")
 
     if len(success_render) > 0:
         print("Rendered scenes:")
